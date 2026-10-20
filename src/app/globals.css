@@ -1,26 +1,71 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
+/* Brand palette: Signal Lime, Move Green, Soft White, Orange, Ice, Mint.
+   The site uses one brand theme (dark green base) instead of light/dark modes. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --lime: #92ff5f;
+  --green: #103b28;
+  --soft-white: #f7f9f7;
+  --orange: #ff7036;
+  --ice: #bff2f0;
+  --mint: #cff1d2;
+
+  --background: var(--green);
+  --foreground: var(--soft-white);
+  --muted: #a9c4b3;
+  --border: #2b5640;
+  --accent: var(--lime);
 }
 
 @theme inline {
+  --color-lime: var(--lime);
+  --color-green: var(--green);
+  --color-soft-white: var(--soft-white);
+  --color-orange: var(--orange);
+  --color-ice: var(--ice);
+  --color-mint: var(--mint);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-display: var(--font-inter-tight);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: var(--lime);
+  color: var(--green);
+}
+
+/* Post and "O meni" text: typography plugin tuned to the palette. */
+.prose {
+  --tw-prose-body: color-mix(in srgb, var(--soft-white) 88%, transparent);
+  --tw-prose-headings: var(--soft-white);
+  --tw-prose-lead: var(--muted);
+  --tw-prose-bold: var(--soft-white);
+  --tw-prose-links: var(--lime);
+  --tw-prose-quotes: var(--mint);
+  --tw-prose-quote-borders: var(--lime);
+  --tw-prose-hr: var(--border);
+  --tw-prose-th-borders: var(--border);
+  --tw-prose-td-borders: var(--border);
+  --tw-prose-bullets: var(--lime);
+  --tw-prose-counters: var(--lime);
+  --tw-prose-captions: var(--muted);
+  --tw-prose-code: var(--soft-white);
+}
+
+.prose :where(h1, h2, h3) {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
 }
